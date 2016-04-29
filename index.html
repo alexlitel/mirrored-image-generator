@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="dist/css/style.min.css" type="text/css">
+    <script src="dist/js/script.min.js" async></script>
+    <title>Mirrored Image Generator</title>
+  </head>
+  <body>
+    <div class="mirror-controller-panel">
+      <h1 class="page-title">Image Mirror Generator</h1>
+      <div class="mirror-image-selection">
+        <div class="row-label">Select File Source</div>
+        <div class="source-selection-row">
+          <div class="url-wrap">
+            <label for="urlfield" class="src-btn src-label">URL</label>
+            <input type="text" name="url" id="urlfield" placeholder="Enter image URL" class="urlfield src-input">
+          </div>
+          <label for="fileupload" class="fileupload-label src-btn src-label">Upload</label>
+          <input id="fileupload" type="file" name="fileupload" value="Upload File" class="fileupload">
+          <button id="demo" name="demo" class="src-btn demo-btn demo">Demo</button>
+        </div>
+        <div class="checkbox"></div>
+      </div>
+      <div class="mirrors">
+        <div class="row-label">Select Mirror Type</div>
+        <div class="mirror-btns">
+          <div class="mirror-block mirror-vert">
+            <div class="mirror-label">Vertical</div>
+            <div class="button-row">
+              <button id="left" class="mirror-block-btn">Left</button>
+              <button id="right" class="mirror-block-btn">Right</button>
+            </div>
+          </div>
+          <div class="mirror-block mirror-horz">
+            <div class="mirror-label">Horizontal</div>
+            <div class="button-row">
+              <button id="top" class="mirror-block-btn">Top</button>
+              <button id="bottom" class="mirror-block-btn">Bottom</button>
+            </div>
+          </div>
+          <div class="mirror-block mirror-quad">
+            <div class="mirror-label">Quad</div>
+            <div class="button-row">
+              <div class="btn-row-top">
+                <button id="topleft" class="mirror-block-btn">Top<br>Left</button>
+                <button id="topright" class="mirror-block-btn">Top<br>Right</button>
+              </div>
+              <div class="btn-row-btm">
+                <button id="bottomleft" class="mirror-block-btn">Bottom<br>Left</button>
+                <button id="bottomright" class="mirror-block-btn">Bottom<br>Right</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="canvas-wrapper" class="canvas-wrapper"></div>
+    <div id="footer" class="footer">
+      <div class="save-options">
+        <div class="save-checkbox-row">
+          <input type="checkbox" name="preserve" id="preserve" class="save-checkbox-checkbox">
+          <label for="preserve" class="save-checkbox-label">Preserve Original Image Dimensions</label>
+        </div>
+        <div class="save-button-row">
+          <button id="savebtnpng" value="png" title="Export canvas to png file. Link opens new window." class="savebtn savebtn-png">save as png</button>
+        </div>
+      </div>
+      <div class="about-row">Copyright © 2016 Alex Litel. Available under an MIT license. <a href="http://alexlitel.github.io/mirror-image-generator">View on Github</a></div>
+    </div>
+  </body>
+</html>

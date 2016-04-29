@@ -1,0 +1,321 @@
+html {
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 300;
+  padding: 1rem;
+  border: 2px solid;
+  width: 500px;
+  margin: 50px auto;
+}
+
+body {
+  max-width: 100%;
+  font-weight: normal;
+  margin: 0;
+  min-height: 100%;
+  color: white;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mirror-image-selection .source-selection-row label,
+.mirror-image-selection .source-selection-row input,
+.mirror-image-selection .source-selection-row button, .mirrors .mirror-block button, .save-options .save-button-row button {
+  padding: 11px;
+  border: 1px solid;
+  font-weight: normal;
+  background: transparent;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: 250ms;
+  background: white;
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row label:hover,
+.mirror-image-selection .source-selection-row input:hover,
+.mirror-image-selection .source-selection-row button:hover, .mirrors .mirror-block button:hover, .save-options .save-button-row button:hover, .mirror-image-selection .source-selection-row label:focus,
+.mirror-image-selection .source-selection-row input:focus,
+.mirror-image-selection .source-selection-row button:focus, .mirrors .mirror-block button:focus, .save-options .save-button-row button:focus {
+  background: yellow;
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row label.active,
+.mirror-image-selection .source-selection-row input.active,
+.mirror-image-selection .source-selection-row button.active, .mirrors .mirror-block button.active, .save-options .save-button-row button.active {
+  color: #555;
+  box-shadow: inset 0 0 0 1px #555;
+}
+
+.mirror-controller-panel {
+  max-width: 900px;
+  background: tomato;
+  padding: 20px;
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden;
+}
+.mirror-controller-panel .fileupload {
+  display: none;
+}
+.mirror-controller-panel .row-label {
+  margin: 1.5rem auto;
+  font-weight: normal;
+  font-size: 1.4rem;
+}
+.mirror-controller-panel .load-msg {
+  border: 2px solid;
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+  margin: 40px auto;
+  max-height: 0px;
+  font-size: 1.5rem;
+  -webkit-animation: msg 2s forwards;
+  -moz-animation: msg 2s forwards;
+  -ms-animation: msg 2s forwards;
+  -o-animation: msg 2s forwards;
+  animation: msg 2s forwards;
+}
+
+.mirror-image-selection {
+  text-align: center;
+}
+.mirror-image-selection .source-selection-row {
+  display: flex;
+  justify-content: space-around;
+}
+.mirror-image-selection .source-selection-row .url-wrap {
+  display: flex;
+  margin-right: 40px;
+}
+.mirror-image-selection .source-selection-row .url-wrap input {
+  flex-grow: 2;
+  width: 280px;
+  text-transform: lowercase;
+}
+.mirror-image-selection .source-selection-row .url-wrap input::-webkit-input-placeholder {
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row .url-wrap input:-moz-placeholder {
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row .url-wrap input::-moz-placeholder {
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row .url-wrap input:-ms-input-placeholder {
+  color: tomato;
+}
+.mirror-image-selection .source-selection-row .fileupload-label {
+  margin-right: 40px;
+}
+
+.mirrors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-height: 0px;
+  transition: 1s max-height;
+  overflow-y: hidden;
+  margin-top: 30px;
+}
+.mirrors.img-loaded {
+  max-height: 30em;
+}
+.mirrors .mirror-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+@media only screen and (max-width: 680px) {
+  .mirrors .mirror-btns {
+    flex-direction: column;
+  }
+}
+.mirrors .mirror-block {
+  height: 240px;
+  display: flex;
+  padding: 15px;
+  flex-direction: column;
+  text-align: center;
+}
+.mirrors .mirror-block .mirror-label {
+  font-weight: bold;
+}
+.mirrors .mirror-block .button-row {
+  display: flex;
+  flex-basis: 100%;
+  margin-top: 1em;
+}
+.mirrors .mirror-block.mirror-vert .button-row {
+  flex-direction: row;
+}
+.mirrors .mirror-block.mirror-vert .button-row button {
+  height: 170px;
+  width: 80px;
+  padding: 5px;
+  margin: 0 5px;
+}
+.mirrors .mirror-block.mirror-horz .button-row {
+  flex-direction: column;
+}
+.mirrors .mirror-block.mirror-horz .button-row button {
+  height: 80px;
+  width: 160px;
+  padding: 5px;
+  margin: 5px 0;
+}
+.mirrors .mirror-block.mirror-quad .button-row {
+  flex-direction: column;
+}
+.mirrors .mirror-block.mirror-quad .button-row button {
+  height: 80px;
+  width: 80px;
+  padding: 5px;
+}
+.mirrors .mirror-block.mirror-quad .button-row .btn-row-top button:first-child {
+  margin: 0 5px 5px 0;
+}
+.mirrors .mirror-block.mirror-quad .button-row .btn-row-top button:last-child {
+  margin: 0 0 5px 5px;
+}
+.mirrors .mirror-block.mirror-quad .button-row .btn-row-btm button:first-child {
+  margin: 5px 5px 0 0;
+}
+.mirrors .mirror-block.mirror-quad .button-row .btn-row-btm button:last-child {
+  margin: 5px 0 0 5px;
+}
+
+.canvas-wrapper {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+.canvas-wrapper .canvas {
+  display: block;
+  margin: auto;
+}
+.canvas-wrapper .simcanvas {
+  max-width: 0px;
+  overflow: hidden;
+}
+
+.save-options {
+  background: tomato;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  flex-flow: column;
+}
+.save-options.active-image {
+  visibility: visible;
+}
+.save-options .save-checkbox-row,
+.save-options .save-button-row {
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.save-options .save-checkbox-row {
+  padding: 20px;
+  background: white;
+  margin-bottom: 36px;
+  color: tomato;
+}
+.save-options .save-checkbox-row.hidden {
+  display: none;
+}
+.save-options .save-checkbox-row .save-checkbox-checkbox {
+  height: 20px;
+  width: 20px;
+  background: white;
+  border: 2px solid;
+  color: tomato;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  margin-right: 10px;
+}
+.save-options .save-checkbox-row .save-checkbox-checkbox:checked:before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 2px;
+  top: 2px;
+  background: tomato;
+}
+.save-options .save-button-row .save-label {
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+
+@-webkit-keyframes msg {
+  0% {
+    max-height: 0px;
+  }
+  50% {
+    max-height: 200px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes msg {
+  0% {
+    max-height: 0px;
+  }
+  50% {
+    max-height: 200px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-ms-keyframes msg {
+  0% {
+    max-height: 0px;
+  }
+  50% {
+    max-height: 200px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes msg {
+  0% {
+    max-height: 0px;
+  }
+  50% {
+    max-height: 200px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes msg {
+  0% {
+    max-height: 0px;
+  }
+  50% {
+    max-height: 200px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

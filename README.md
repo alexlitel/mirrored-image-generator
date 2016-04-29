@@ -1,0 +1,3 @@
+# Mirror Image Generator
+
+[Mirror Image Generator](http://alexlitel.github.io/mirror-image-generator) is a small web app using HTML5 Canvas and JavaScript to create symmetrical versions of images by duplicating either one vertical/horizontal half or one of four quadrants. Users can then export the symmetrical image as a PNG. Currently, the app uses a native, library-less implementation that only supports Chrome.

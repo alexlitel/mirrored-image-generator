@@ -1,0 +1,53 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible',content='IE=edge')
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='dist/css/style.min.css', type='text/css')
+		script(src='dist/js/script.min.js', async)
+		title Mirrored Image Generator
+	body
+		.mirror-controller-panel
+			h1.page-title Image Mirror Generator
+			.mirror-image-selection
+				.row-label Select File Source
+				.source-selection-row
+					.url-wrap
+						label(for="urlfield").src-btn.src-label URL
+						input(type="text" name="url" id="urlfield" class="urlfield" placeholder="Enter image URL").src-input
+					label(for="fileupload" class="fileupload-label src-btn src-label") Upload
+					input#fileupload.fileupload(type='file', name='fileupload', value='Upload File')
+					button#demo.src-btn.demo-btn.demo(name='demo') Demo
+				.checkbox
+			.mirrors
+				.row-label Select Mirror Type
+				.mirror-btns
+					.mirror-block.mirror-vert
+						.mirror-label Vertical
+						.button-row
+							button.mirror-block-btn#left Left
+							button.mirror-block-btn#right Right
+					.mirror-block.mirror-horz
+						.mirror-label Horizontal
+						.button-row
+							button.mirror-block-btn#top Top
+							button.mirror-block-btn#bottom Bottom
+					.mirror-block.mirror-quad
+						.mirror-label Quad
+						.button-row
+							.btn-row-top
+								button.mirror-block-btn#topleft Top<br>Left
+								button.mirror-block-btn#topright Top<br>Right
+							.btn-row-btm
+								button.mirror-block-btn#bottomleft Bottom<br>Left
+								button.mirror-block-btn#bottomright Bottom<br>Right
+		#canvas-wrapper.canvas-wrapper
+		#footer.footer
+			.save-options
+				.save-checkbox-row
+					input(type="checkbox", name="preserve" id="preserve").save-checkbox-checkbox
+					label(for="preserve").save-checkbox-label Preserve Original Image Dimensions
+				.save-button-row: button(id='savebtnpng', class='savebtn savebtn-png', value='png' title='Export canvas to png file. Link opens new window.') save as png
+			.about-row Copyright © 2016 Alex Litel. Available under an MIT license. <a href="http://alexlitel.github.io/mirror-image-generator">View on Github</a>
