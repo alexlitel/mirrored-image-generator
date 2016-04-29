@@ -3,9 +3,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         'gh-pages': {
             options: {
-                base: '.',
+                base: '',
             },
-            src: ['index.html', 'dist/*']
+            src: ['index.html', 'dist/**', 'assets/*']
         },
         jade: {
             compile: {
@@ -63,6 +63,6 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', 'Convert Jade templates into html templates', ['jade', 'sass', 'uglify', 'watch']);
-    grunt.registerTask('deploy', 'launch on GH pages', [])
+    grunt.registerTask('deploy', 'launch on GH pages', ['gh-pages'])
     grunt.loadNpmTasks('grunt-contrib-watch');
 };
