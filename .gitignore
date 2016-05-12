@@ -12,6 +12,7 @@ Thumbs.db
 
 #Testing/Dev/Etc
 stuff.txt
+.grunt/
 node_modules/
 
 

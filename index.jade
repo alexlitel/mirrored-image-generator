@@ -6,7 +6,8 @@ html(lang='en')
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700', rel='stylesheet', type='text/css')
 		link(rel='stylesheet', href='dist/css/style.min.css', type='text/css')
-		script(src='dist/js/script.min.js', async)
+		script(src='dist/js/fabric.min.js')
+		script(src='dist/js/app.min.js' defer)
 		title Mirrored Image Generator
 	body
 		.mirror-controller-panel
@@ -18,36 +19,43 @@ html(lang='en')
 						label(for="urlfield").src-btn.src-label URL
 						input(type="text" name="url" id="urlfield" class="urlfield" placeholder="Enter image URL").src-input
 					label(for="fileupload" class="fileupload-label src-btn src-label") Upload
-					input#fileupload.fileupload(type='file', name='fileupload', value='Upload File')
+					input#fileupload.fileupload(type='file', name='fileupload' accept="image/*")
 					button#demo.src-btn.demo-btn.demo(name='demo') Demo
-				.checkbox
 			.mirrors
 				.row-label Select Mirror Type
 				.mirror-btns
 					.mirror-block.mirror-vert
 						.mirror-label Vertical
 						.button-row
-							button.mirror-block-btn#left Left
-							button.mirror-block-btn#right Right
+							button.mirror-block-btn#left(value="left") Left
+							button.mirror-block-btn#right(value="right") Right
 					.mirror-block.mirror-horz
 						.mirror-label Horizontal
 						.button-row
-							button.mirror-block-btn#top Top
-							button.mirror-block-btn#bottom Bottom
+							button.mirror-block-btn#top(value="top") Top
+							button.mirror-block-btn#bottom(value="bottom") Bottom
 					.mirror-block.mirror-quad
 						.mirror-label Quad
 						.button-row
 							.btn-row-top
-								button.mirror-block-btn#topleft Top<br>Left
-								button.mirror-block-btn#topright Top<br>Right
+								button.mirror-block-btn#topleft(value="top left") Top<br>Left
+								button.mirror-block-btn#topright(value="top right") Top<br>Right
 							.btn-row-btm
-								button.mirror-block-btn#bottomleft Bottom<br>Left
-								button.mirror-block-btn#bottomright Bottom<br>Right
+								button.mirror-block-btn#bottomleft(value="bottom left") Bottom<br>Left
+								button.mirror-block-btn#bottomright(value="bottom right") Bottom<br>Right
+				#invert-toggle.invert-toggle-checks
+					.invert-toggle-checkbox-wrap
+						label(for="invert_x")#invert_x_indicator.invert-checkbox-indicator.invert-y-indicator
+						button(name="invert-x" id="invert_x" value="x" data-checked="false").invert-checkbox.invert-x Invert X-Axis
+					.invert-toggle-checkbox-wrap
+						label(for="invert_y")#invert_y_indicator.invert-checkbox-indicator.invert-y-indicator
+						button(name="invert-y" id="invert_y" value="y" data-checked="false").invert-checkbox.invert-y Invert Y-Axis
+
 		#canvas-wrapper.canvas-wrapper
 		#footer.footer
 			.save-options
 				.save-checkbox-row
-					input(type="checkbox", name="preserve" id="preserve").save-checkbox-checkbox
-					label(for="preserve").save-checkbox-label Preserve Original Image Dimensions
+					label(for="preserve")#preserve_indicator.save-checkbox-indicator
+					button(name="preserve" id="preserve" data-checked="false").save-checkbox Preserve Original Image Dimensions
 				.save-button-row: button(id='savebtnpng', class='savebtn savebtn-png', value='png' title='Export canvas to png file. Link opens new window.') save as png
-			.about-row Copyright © 2016 Alex Litel. Available under an MIT license. <a href="http://alexlitel.github.io/mirror-image-generator">View on Github</a>
+			.about-row Copyright © 2016 Alex Litel. Available under an MIT license. <a href="https://github.com/alexlitel/mirrored-image-generator">View on Github</a>

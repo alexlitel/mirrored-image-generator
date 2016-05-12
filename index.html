@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="dist/css/style.min.css" type="text/css">
-    <script src="dist/js/script.min.js" async></script>
+    <script src="dist/js/fabric.min.js"></script>
+    <script src="dist/js/app.min.js" defer></script>
     <title>Mirrored Image Generator</title>
   </head>
   <body>
@@ -20,10 +21,9 @@
             <input type="text" name="url" id="urlfield" placeholder="Enter image URL" class="urlfield src-input">
           </div>
           <label for="fileupload" class="fileupload-label src-btn src-label">Upload</label>
-          <input id="fileupload" type="file" name="fileupload" value="Upload File" class="fileupload">
+          <input id="fileupload" type="file" name="fileupload" accept="image/*" class="fileupload">
           <button id="demo" name="demo" class="src-btn demo-btn demo">Demo</button>
         </div>
-        <div class="checkbox"></div>
       </div>
       <div class="mirrors">
         <div class="row-label">Select Mirror Type</div>
@@ -31,29 +31,39 @@
           <div class="mirror-block mirror-vert">
             <div class="mirror-label">Vertical</div>
             <div class="button-row">
-              <button id="left" class="mirror-block-btn">Left</button>
-              <button id="right" class="mirror-block-btn">Right</button>
+              <button id="left" value="left" class="mirror-block-btn">Left</button>
+              <button id="right" value="right" class="mirror-block-btn">Right</button>
             </div>
           </div>
           <div class="mirror-block mirror-horz">
             <div class="mirror-label">Horizontal</div>
             <div class="button-row">
-              <button id="top" class="mirror-block-btn">Top</button>
-              <button id="bottom" class="mirror-block-btn">Bottom</button>
+              <button id="top" value="top" class="mirror-block-btn">Top</button>
+              <button id="bottom" value="bottom" class="mirror-block-btn">Bottom</button>
             </div>
           </div>
           <div class="mirror-block mirror-quad">
             <div class="mirror-label">Quad</div>
             <div class="button-row">
               <div class="btn-row-top">
-                <button id="topleft" class="mirror-block-btn">Top<br>Left</button>
-                <button id="topright" class="mirror-block-btn">Top<br>Right</button>
+                <button id="topleft" value="top left" class="mirror-block-btn">Top<br>Left</button>
+                <button id="topright" value="top right" class="mirror-block-btn">Top<br>Right</button>
               </div>
               <div class="btn-row-btm">
-                <button id="bottomleft" class="mirror-block-btn">Bottom<br>Left</button>
-                <button id="bottomright" class="mirror-block-btn">Bottom<br>Right</button>
+                <button id="bottomleft" value="bottom left" class="mirror-block-btn">Bottom<br>Left</button>
+                <button id="bottomright" value="bottom right" class="mirror-block-btn">Bottom<br>Right</button>
               </div>
             </div>
+          </div>
+        </div>
+        <div id="invert-toggle" class="invert-toggle-checks">
+          <div class="invert-toggle-checkbox-wrap">
+            <label for="invert_x" id="invert_x_indicator" class="invert-checkbox-indicator invert-y-indicator"></label>
+            <button name="invert-x" id="invert_x" value="x" data-checked="false" class="invert-checkbox invert-x">Invert X-Axis</button>
+          </div>
+          <div class="invert-toggle-checkbox-wrap">
+            <label for="invert_y" id="invert_y_indicator" class="invert-checkbox-indicator invert-y-indicator"></label>
+            <button name="invert-y" id="invert_y" value="y" data-checked="false" class="invert-checkbox invert-y">Invert Y-Axis</button>
           </div>
         </div>
       </div>
@@ -62,14 +72,14 @@
     <div id="footer" class="footer">
       <div class="save-options">
         <div class="save-checkbox-row">
-          <input type="checkbox" name="preserve" id="preserve" class="save-checkbox-checkbox">
-          <label for="preserve" class="save-checkbox-label">Preserve Original Image Dimensions</label>
+          <label for="preserve" id="preserve_indicator" class="save-checkbox-indicator"></label>
+          <button name="preserve" id="preserve" data-checked="false" class="save-checkbox">Preserve Original Image Dimensions</button>
         </div>
         <div class="save-button-row">
           <button id="savebtnpng" value="png" title="Export canvas to png file. Link opens new window." class="savebtn savebtn-png">save as png</button>
         </div>
       </div>
-      <div class="about-row">Copyright © 2016 Alex Litel. Available under an MIT license. <a href="http://alexlitel.github.io/mirror-image-generator">View on Github</a></div>
+      <div class="about-row">Copyright © 2016 Alex Litel. Available under an MIT license. <a href="https://github.com/alexlitel/mirrored-image-generator">View on Github</a></div>
     </div>
   </body>
 </html>
