@@ -87,7 +87,7 @@ var app = (function(fabric, window, document, Image, setTimeout, clearTimeout) {
         //prevent whitespace from loading
         document.querySelector('.canvas-container').style.display = 'none';
         image = new Image();
-        image.setAttribute('crossOrigin', 'anonymous');
+        // image.setAttribute('crossOrigin', 'anonymous');
 
         //remove canvas attributes
         if (el.hasAttribute('data-filled')) {
