@@ -353,6 +353,9 @@ body {
     margin: 50px auto;
     flex: 1;
     max-width: 100%;
+    .canvas-container {
+        margin: 0 auto;
+    }
     canvas {
         display: none;
         margin: auto;

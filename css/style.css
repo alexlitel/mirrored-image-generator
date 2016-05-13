@@ -731,6 +731,10 @@ body {
   max-width: 100%;
 }
 
+.canvas-wrapper .canvas-container {
+  margin: 0 auto;
+}
+
 .canvas-wrapper canvas {
   display: none;
   margin: auto;

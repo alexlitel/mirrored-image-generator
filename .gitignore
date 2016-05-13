@@ -13,6 +13,8 @@ Thumbs.db
 #Testing/Dev/Etc
 stuff.txt
 .grunt/
+.gulp/
+.publish/
 node_modules/
 
 
