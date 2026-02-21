@@ -1,0 +1,458 @@
+/* ============================================================
+   MIRROR GENERATOR — style.css
+   Windows 2.0 / 16-bit / pixel aesthetic  ·  Mobile-first
+   Press Start 2P font, full-width controls, flat UI
+   ============================================================ */
+
+:root {
+  --bg:      #c0c0c0;
+  --panel:   #ffffff;
+  --border:  #222222;
+  --text:    #111111;
+  --hl:      #000088;
+  --hl-text: #ffffff;
+  --shadow:  #888888;
+  --font:    'Roboto Mono', 'Courier New', monospace;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  min-height: 100%;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 12px;
+  text-transform: lowercase;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: none;
+  overflow: hidden;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── CSS-only folder icon ────────────────────────────────── */
+.folder {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 16px;
+}
+.folder-tab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 5px;
+  background: var(--panel);
+  border: 2px solid var(--text);
+  border-bottom: none;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+}
+.folder-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: var(--panel);
+  border: 2px solid var(--text);
+}
+/* filled folder on hover/focus */
+.dropdown-toggle:hover .folder-tab,
+.dropdown-toggle:hover .folder-body,
+.dropdown-toggle:focus-visible .folder-tab,
+.dropdown-toggle:focus-visible .folder-body {
+  background: var(--hl-text);
+  border-color: var(--hl-text);
+}
+
+/* large folder for placeholder */
+.folder-lg {
+  width: 36px;
+  height: 28px;
+}
+.folder-lg .folder-tab {
+  width: 18px;
+  height: 9px;
+}
+.folder-lg .folder-body {
+  height: 22px;
+}
+.placeholder:hover .folder-lg .folder-tab,
+.placeholder:hover .folder-lg .folder-body {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 6px;
+  background: var(--panel);
+  border-bottom: 2px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+}
+.header-left {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.header-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+.header-right {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Info button */
+.info-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.info-btn:hover, .info-btn:focus-visible {
+  background: var(--border);
+  color: var(--panel);
+  outline: none;
+}
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.dropdown { position: relative; }
+
+.dropdown-toggle {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.dropdown-toggle:hover, .dropdown-toggle:focus-visible {
+  background: var(--hl);
+  color: var(--hl-text);
+  outline: none;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  background: var(--panel);
+  border: 2px solid var(--border);
+  min-width: 100px;
+  z-index: 100;
+}
+.dropdown-panel[hidden] { display: none !important; }
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 11px;
+  text-transform: lowercase;
+  text-align: left;
+  cursor: pointer;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.dropdown-item:hover, .dropdown-item:focus-visible {
+  background: var(--hl);
+  color: var(--hl-text);
+  outline: none;
+}
+
+.dropdown-hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* ── Canvas area ─────────────────────────────────────────── */
+.canvas-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 28px 40px;
+  border: 2px dashed var(--shadow);
+  background: var(--panel);
+  color: var(--shadow);
+}
+.placeholder:hover {
+  border-color: var(--border);
+  color: var(--text);
+}
+.placeholder[hidden] { display: none !important; }
+
+.placeholder-text {
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+
+.mirror-canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border: 2px solid var(--border);
+  background: var(--panel);
+}
+.mirror-canvas[hidden] { display: none; }
+
+/* ── Controls footer ─────────────────────────────────────── */
+.controls {
+  flex-shrink: 0;
+  border-top: 2px solid var(--border);
+  background: var(--panel);
+  padding: 0;
+}
+.controls[hidden] { display: none !important; }
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+}
+
+/* Invert row */
+.invert-row {
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+.ctrl-label {
+  font-size: 11px;
+  letter-spacing: .04em;
+  margin-right: 2px;
+}
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  user-select: none;
+}
+.chk-input {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.chk-box {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--border);
+  background: var(--panel);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.chk-input:checked + .chk-box {
+  background: var(--border);
+}
+.chk-input:checked + .chk-box::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: var(--panel);
+}
+
+/* Mirror row — full width, equal buttons */
+.mirror-row {
+  display: flex;
+  width: 100%;
+}
+
+.mbtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  background: var(--panel);
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 11px;
+  text-transform: lowercase;
+  cursor: pointer;
+  padding: 0;
+}
+.mbtn:last-child {
+  border-right: none;
+}
+.mbtn:hover, .mbtn:focus-visible {
+  background: var(--hl);
+  color: var(--hl-text);
+  outline: none;
+}
+.mbtn.active {
+  background: var(--border);
+  color: var(--panel);
+}
+
+.save-btn {
+  font-weight: 700;
+}
+
+/* ── Info overlay ────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.overlay[hidden] { display: none !important; }
+
+.overlay-card {
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--border);
+  padding: 18px 14px 14px;
+  max-width: 320px;
+  width: 100%;
+  position: relative;
+}
+.overlay-card h2 {
+  font-size: 13px;
+  margin-bottom: 10px;
+  letter-spacing: .04em;
+}
+.overlay-card p  { font-size: 11px; line-height: 1.8; margin-bottom: 4px; }
+.overlay-card ul { padding-left: 14px; margin-bottom: 4px; }
+.overlay-card li { font-size: 11px; line-height: 1.8; margin-bottom: 2px; }
+.overlay-card a  { color: var(--hl); }
+.credit { opacity: .5; font-size: 10px !important; margin-top: 8px !important; }
+
+.overlay-close {
+  position: absolute;
+  top: 4px; right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  font-family: var(--font);
+  line-height: 1;
+}
+.overlay-close:hover { color: var(--hl); }
+
+/* ── Toast ───────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--border);
+  color: var(--panel);
+  font-size: 11px;
+  font-family: var(--font);
+  padding: 5px 10px;
+  border: 2px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms, transform 120ms;
+  white-space: nowrap;
+  z-index: 300;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Desktop breakpoint ──────────────────────────────────── */
+@media (min-width: 600px) {
+  body { font-size: 13px; }
+  .header { height: 42px; padding: 0 14px; }
+  .header-left  { left: 14px; }
+  .header-right { right: 14px; }
+  .header-title { font-size: 13px; }
+
+  .folder     { width: 24px; height: 18px; }
+  .folder-tab { width: 12px; height: 6px; }
+  .folder-body { height: 14px; }
+
+  .info-btn { width: 28px; height: 28px; font-size: 13px; }
+
+  .dropdown-toggle { padding: 5px 8px; }
+  .dropdown-item   { font-size: 12px; padding: 8px 14px; }
+  .dropdown-panel  { min-width: 130px; }
+
+  .canvas-area { padding: 16px; }
+
+  .folder-lg { width: 44px; height: 34px; }
+  .folder-lg .folder-tab  { width: 20px; height: 10px; }
+  .folder-lg .folder-body { height: 26px; }
+  .placeholder      { padding: 36px 52px; gap: 12px; }
+  .placeholder-text { font-size: 12px; }
+
+  .ctrl-label  { font-size: 12px; }
+  .chk         { font-size: 12px; gap: 5px; }
+  .chk-box     { width: 14px; height: 14px; }
+  .invert-row  { padding: 7px 0; gap: 12px; }
+
+  .mbtn { min-height: 44px; font-size: 12px; }
+
+  .overlay-card    { padding: 22px 18px 16px; }
+  .overlay-card h2 { font-size: 15px; }
+  .overlay-card p  { font-size: 12px; }
+  .overlay-card li { font-size: 12px; }
+  .credit          { font-size: 10px !important; }
+}

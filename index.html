@@ -1,75 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="dist/css/style.min.css" type="text/css">
-    <script src="dist/js/script.min.js" async></script>
-    <title>Mirrored Image Generator</title>
-  </head>
-  <body>
-    <div class="mirror-controller-panel">
-      <h1 class="page-title">Image Mirror Generator</h1>
-      <div class="mirror-image-selection">
-        <div class="row-label">Select File Source</div>
-        <div class="source-selection-row">
-          <div class="url-wrap">
-            <label for="urlfield" class="src-btn src-label">URL</label>
-            <input type="text" name="url" id="urlfield" placeholder="Enter image URL" class="urlfield src-input">
-          </div>
-          <label for="fileupload" class="fileupload-label src-btn src-label">Upload</label>
-          <input id="fileupload" type="file" name="fileupload" value="Upload File" class="fileupload">
-          <button id="demo" name="demo" class="src-btn demo-btn demo">Demo</button>
-        </div>
-        <div class="checkbox"></div>
-      </div>
-      <div class="mirrors">
-        <div class="row-label">Select Mirror Type</div>
-        <div class="mirror-btns">
-          <div class="mirror-block mirror-vert">
-            <div class="mirror-label">Vertical</div>
-            <div class="button-row">
-              <button id="left" class="mirror-block-btn">Left</button>
-              <button id="right" class="mirror-block-btn">Right</button>
-            </div>
-          </div>
-          <div class="mirror-block mirror-horz">
-            <div class="mirror-label">Horizontal</div>
-            <div class="button-row">
-              <button id="top" class="mirror-block-btn">Top</button>
-              <button id="bottom" class="mirror-block-btn">Bottom</button>
-            </div>
-          </div>
-          <div class="mirror-block mirror-quad">
-            <div class="mirror-label">Quad</div>
-            <div class="button-row">
-              <div class="btn-row-top">
-                <button id="topleft" class="mirror-block-btn">Top<br>Left</button>
-                <button id="topright" class="mirror-block-btn">Top<br>Right</button>
-              </div>
-              <div class="btn-row-btm">
-                <button id="bottomleft" class="mirror-block-btn">Bottom<br>Left</button>
-                <button id="bottomright" class="mirror-block-btn">Bottom<br>Right</button>
-              </div>
-            </div>
-          </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generate mirrored versions of any image.">
+  <title>mirror generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ■ Header bar -->
+  <header class="header">
+    <div class="header-left">
+      <div class="dropdown" id="file-menu">
+        <button class="dropdown-toggle folder-icon" id="file-menu-toggle" aria-haspopup="true" aria-expanded="false"
+          aria-label="Image source" title="Image source">
+          <!-- CSS-only folder icon -->
+          <span class="folder" aria-hidden="true">
+            <span class="folder-tab"></span>
+            <span class="folder-body"></span>
+          </span>
+        </button>
+        <div class="dropdown-panel" id="file-dropdown" hidden>
+          <label for="file-upload" class="dropdown-item" tabindex="0">upload</label>
+          <input id="file-upload" type="file" accept="image/*" class="sr-only">
+          <hr class="dropdown-hr">
+          <button id="btn-demo" class="dropdown-item">demo</button>
         </div>
       </div>
     </div>
-    <div id="canvas-wrapper" class="canvas-wrapper"></div>
-    <div id="footer" class="footer">
-      <div class="save-options">
-        <div class="save-checkbox-row">
-          <input type="checkbox" name="preserve" id="preserve" class="save-checkbox-checkbox">
-          <label for="preserve" class="save-checkbox-label">Preserve Original Image Dimensions</label>
-        </div>
-        <div class="save-button-row">
-          <button id="savebtnpng" value="png" title="Export canvas to png file. Link opens new window." class="savebtn savebtn-png">save as png</button>
-        </div>
-      </div>
-      <div class="about-row">Copyright © 2016 Alex Litel. Available under an MIT license. <a href="https://github.com/alexlitel/mirrored-image-generator">View on Github</a></div>
+    <span class="header-title">mirror generator</span>
+    <div class="header-right">
+      <button id="btn-info" class="info-btn" aria-label="About" title="About">i</button>
     </div>
-  </body>
+  </header>
+
+  <!-- ■ Canvas area -->
+  <main class="canvas-area" id="canvas-area">
+    <label for="file-upload-placeholder" class="placeholder" id="canvas-placeholder">
+      <input id="file-upload-placeholder" type="file" accept="image/*" class="sr-only">
+      <span class="placeholder-icon" aria-hidden="true">
+        <span class="folder folder-lg">
+          <span class="folder-tab"></span>
+          <span class="folder-body"></span>
+        </span>
+      </span>
+      <span class="placeholder-text">click to upload</span>
+    </label>
+    <canvas id="mirror-canvas" class="mirror-canvas" hidden></canvas>
+  </main>
+
+  <!-- ■ Bottom controls -->
+  <footer class="controls" id="controls" hidden>
+
+    <!-- Invert row -->
+    <div class="ctrl-row invert-row">
+      <span class="ctrl-label">invert</span>
+      <label class="chk" for="invert-x">
+        x
+        <input type="checkbox" id="invert-x" class="chk-input">
+        <span class="chk-box"></span>
+      </label>
+      <label class="chk" for="invert-y">
+        y
+        <input type="checkbox" id="invert-y" class="chk-input">
+        <span class="chk-box"></span>
+      </label>
+    </div>
+
+    <!-- Mirror row — full width -->
+    <div class="ctrl-row mirror-row">
+      <button class="mbtn" data-mirror="top">t</button>
+      <button class="mbtn" data-mirror="bottom">b</button>
+      <button class="mbtn" data-mirror="left">l</button>
+      <button class="mbtn" data-mirror="right">r</button>
+      <button class="mbtn" data-mirror="top-left">tl</button>
+      <button class="mbtn" data-mirror="top-right">tr</button>
+      <button class="mbtn" data-mirror="bottom-left">bl</button>
+      <button class="mbtn" data-mirror="bottom-right">br</button>
+      <button id="btn-save" class="mbtn save-btn">save</button>
+    </div>
+
+  </footer>
+
+  <!-- ■ Info overlay -->
+  <div id="info-overlay" class="overlay" hidden>
+    <div class="overlay-card">
+      <button id="btn-close-info" class="overlay-close" aria-label="Close">×</button>
+      <h2>mirror generator</h2>
+      <p>Upload any image (or try demo), pick a mirror mode, then save.</p>
+      <ul>
+        <li><b>t/b</b> — mirror top or bottom</li>
+        <li><b>l/r</b> — mirror left or right</li>
+        <li><b>tl/tr/bl/br</b> — mirror from corner</li>
+      </ul>
+      <p><b>invert x/y</b> flips source before tiling.</p>
+      <p>Save exports at original resolution.</p>
+      <p class="credit">© 2016–2026 · <a href="https://github.com/alexlitel/mirrored-image-generator" target="_blank"
+          rel="noopener">github</a></p>
+    </div>
+  </div>
+
+  <!-- ■ Toast -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+
 </html>
