@@ -1,3 +1,8 @@
-# Mirrored Image Generator
+# mirror generator
 
-[Mirrored Image Generator](http://alexlitel.github.io/mirrored-image-generator) is a small web app using HTML5 Canvas and [FabicJS](https://fabricjs.com) to create symmetrical versions of images by duplicating either one vertical/horizontal half or one of four quadrants. Additionally, users can invert the x-axis and y-axis of the mirror sources, allowing for the creation of 32 kinds of different derivative images. The implementation of the canvas is responsive, and the entirety of the symmetrical image fit within your viewport. Users can then export the symmetrical image as a PNG. It's designed to be cross-browser, but if you come across any issues, please let me know.
+[mirror generator](https://alexlitel.github.io/mirrored-image-generator) is a small web app that creates symmetrical versions of images using the HTML5 Canvas API.
+
+Upload any image (or load the demo), pick a mirror mode, and save. Eight mirror modes are available: top, bottom, left, right, and the four corner quadrants (tl, tr, bl, br). Invert x and y axes independently to get 32 possible variations per image. Exports at the original image resolution.
+
+Built with vanilla HTML, CSS, and JS — no dependencies.
+
